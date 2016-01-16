@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
 import socket
 import urllib
@@ -14,9 +16,9 @@ class MyHandler(BaseHTTPRequestHandler):
         host, port = urllib.splitnport(host)
         if port < 0:
             port = 80
-        # print host
+        print host
         host_ip = socket.gethostbyname(host)
-        # print port
+        print port
 
         del self.headers['Proxy-Connection']
         self.headers['Connection'] = 'close'
