@@ -164,6 +164,13 @@ def weixin_init():
     return True
 
 
+def webwxstatusnotify():
+    uri = base_uri  + '/webwxstatusnotify?lang=zh_CN&pass_ticket=%s' % pass_ticket
+    params = {
+        'BaseRequest' : base_request ,
+        
+    }
+
 def sync_check():
 
     uri = 'https://webpush.weixin.qq.com/cgi-bin/mmwebwx-bin/synccheck?'
@@ -202,7 +209,7 @@ def auto_answer():
 
 def webwxgetcontact():
 
-    uri = base_uri + '/webwxgetcontact?lang=en_US&pass_ticket=%s&skey=%s&seq=0&r=%s' % (pass_ticket, skey, int(time.time()))
+    uri = base_uri + '/webwxgetcontact?lang=zh_CN&pass_ticket=%s&skey=%s&seq=0&r=%s' % (pass_ticket, skey, int(time.time()))
 
     print uri
     request = getRequest(uri, None)
