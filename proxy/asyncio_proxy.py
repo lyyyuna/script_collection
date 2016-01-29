@@ -27,6 +27,8 @@ class HttpRequestHandler(aiohttp.server.ServerHttpProtocol):
 
     async def send_msg(self, response):
         proxy_response = aiohttp.Response(self.writer, response.status, http_version=response.version)
+        # Do not pass on Content-Encoding header to client.
+        # Unfortunately aiohttp transparently decodes content, so sending any Content-Encoding header to the client would be incorrect.
         proxy_response_headers = [
             (name, value) for name, value
             in response.headers.items()
