@@ -17,7 +17,7 @@ function on_request(req, res) {
         res.writeHead(backres.statusCode, backres.headers);
         backres.pipe(res);        
     });
-    
+    // for posible POST content
     req.pipe(forwardreq);
 };
 
