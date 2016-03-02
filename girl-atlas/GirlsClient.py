@@ -17,6 +17,7 @@ class GirlsClient():
 
     async def crawl_album_url(self):
         html = await self._client.get(GIRLS_URL)
+        count = 1
 
         while True:
             soup = BeautifulSoup(html, 'html.parser')
@@ -34,6 +35,11 @@ class GirlsClient():
                 continue
             else:
                 html = html1
+
+            print ()
+            print ('已经下载完第 %s 页' % count)
+            print ()
+            count += 1
 
             await asyncio.sleep(config1.next_page_interval)
 
@@ -74,7 +80,9 @@ class GirlsClient():
             [album_title, img_url] = await self._photoq.get()
             if img_url == 'the end':
                 self._flag = True
-
+            if album_title.find('|') != -1:
+                index = album_title.find('|')
+                album_title = album_title[:index]
             if not os.path.exists('img/' + album_title):
                 print ()
                 print ('生成文件夹：' + album_title)
@@ -110,7 +118,7 @@ class GirlsClient():
             config1.next_page_interval = next_page_interval
             if count > 5:
                 count = 1
-                config1.crawl_url_interval = 20
+                config1.crawl_url_interval = 40
                 config1.next_page_interval = 20
                 print ('让爬虫休息一下。。。')
                 if self._flag == True:
