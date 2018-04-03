@@ -22,6 +22,8 @@ class ModelMeta(type):
                         raise RuntimeError("Duplicate primary key: %s", k)
                 else:
                     fields.append(k)
+        if primary == None:
+            raise RuntimeError("No primary key given.")
         for k in mappings.keys():
             attrs.pop(k)
         # renew attrs
