@@ -68,11 +68,12 @@ class Model(dict):
 
     def getValue(self, k):
         value = getattr(self, k, None)
-        if value is not None:
+        if value is None:
             field = self.__mappings__[k]
             if field.default is not None:
                 value = field.default
                 setattr(self, k, value)
+        return value
 
     def save(self):
         args = map(self.getValue, self.__fields__)
