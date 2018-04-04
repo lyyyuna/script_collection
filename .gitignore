@@ -6,3 +6,4 @@ __pycache__
 *.log
 .idea
 venv
+*sqlite3
