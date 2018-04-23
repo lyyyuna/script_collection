@@ -1,0 +1,12 @@
+- model: blogapp.Blog
+  fields:
+    name: lyya
+    content: I would like to inform you that the GM release of DDEI
+- model: blogapp.Blog
+  fields:
+    name: lyyb
+    content: GA will be around mid-May.
+- model: blogapp.Blog
+  fields:
+    name: lyyc
+    content: GA will around mid-May.

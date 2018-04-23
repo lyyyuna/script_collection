@@ -8,4 +8,4 @@ class Blog(models.Model):
     content = models.TextField(default='This is a excellent blog.')
 
     def __str__(self):
-        return name
+        return self.name
