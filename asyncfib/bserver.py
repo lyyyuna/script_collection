@@ -60,10 +60,16 @@ future_wait = {}
 future_notify, future_event = socketpair()
 def future_done(future):
     tasks.append(future_wait.pop(future))
+    # 为什么要多此一举？
+    # 因为此时 tasks 不为空，所以必定阻塞于 select 上
+    # 需要随意发送点东西，好跳过阻塞
+    # 继续执行 future task
     future_notify.send(b'x')
+
 
 def future_monitor():
     while True:
+        # 用来跳过 select 阻塞
         yield 'recv', future_event
         future_event.recv(100)
 
